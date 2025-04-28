@@ -2,182 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday Uncle Tonny</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Anniversary</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Make the background love video */
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(60%);
     }
 
     body {
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-image: url(un.jpg);
+      color: white;
+      text-align: center;
+      background: #000; /* fallback background */
+    }
+
+    .marquee {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      background: rgba(255, 192, 203, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 600px;
-      padding: 30px;
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .item {
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      text-align: center;
-      z-index: 1;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      width: 200px;
+      height: 250px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: transform 0.5s;
+      animation: fadeInUp 1.5s ease;
     }
 
-    .container img {
-      width: 140px;
-      height: auto;
+    .item:hover {
+      transform: scale(1.05);
+    }
+
+    .item img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: radius 10px;;
-      border: 4px solid #fff;
-      margin-bottom: 20px;
-      animation: floatIn 2s ease-out forwards;
-      opacity: 0;
-      object-fit: contain;
-    }
-
-    @keyframes floatIn {
-      0% {
-        transform: translateY(-50px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    h1, p {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 2s ease forwards;
-    }
-
-    h1 {
-      animation-delay: 1s;
-      color: black;
-    }
-
-    p {
-      animation-delay: 2s;
-      color: black;
     }
 
     @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 0;
+    .button {
+      margin-top: 40px;
+      padding: 12px 30px;
+      font-size: 18px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .button:hover {
+      background: #ff3366;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-<!-- Background Birthday Music -->
-<audio autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-birthday.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+  <!-- Love background video -->
+  <video autoplay muted loop playsinline id="background-video">
+    <source src="love-background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-<!-- Confetti Canvas -->
-<canvas id="confetti"></canvas>
+  <div class="marquee">Happy Anniversary Mum and Dad ❤️</div>
 
-<div class="container">
-  <img src="un.jpg" alt="Uncle Tonny">
-  <h1>🎉 Happy Birthday Uncle Tonny! 🎉</h1>
-  <p>Wishing you joy, laughter, and everything your heart desires. You are so loved! 💖</p>
-</div>
+  <div class="container">
+    <div class="item">
+      <img src="GOOD.jpg" alt="Mum and Dad 1">
+    </div>
+    <div class="item">
+      <img src="FIN.jpg" alt="Mum and Dad 2">
+    </div>
+    <div class="item">
+      <img src="mum.jpg" alt="Mum and Dad 3">
+    </div>
+  </div>
 
-<script>
-  // CONFETTI
-  const canvas = document.getElementById('confetti');
-  const ctx = canvas.getContext('2d');
-  let width = window.innerWidth;
-  let height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
-
-  const confettiCount = 150;
-  const confetti = [];
-
-  function randomColor() {
-    const colors = ['#fce18a', '#ff726d', '#b48def', '#f4306d'];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-
-  for (let i = 0; i < confettiCount; i++) {
-    confetti.push({
-      x: Math.random() * width,
-      y: Math.random() * height - height,
-      r: Math.random() * 6 + 4,
-      d: Math.random() * confettiCount,
-      color: randomColor(),
-      tilt: Math.floor(Math.random() * 10) - 10,
-      tiltAngleIncremental: Math.random() * 0.07 + 0.05,
-      tiltAngle: 0
-    });
-  }
-
-  function drawConfetti() {
-    ctx.clearRect(0, 0, width, height);
-    confetti.forEach((c, i) => {
-      ctx.beginPath();
-      ctx.lineWidth = c.r;
-      ctx.strokeStyle = c.color;
-      ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
-      ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
-      ctx.stroke();
-    });
-    updateConfetti();
-  }
-
-  function updateConfetti() {
-    confetti.forEach((c, i) => {
-      c.tiltAngle += c.tiltAngleIncremental;
-      c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
-      c.x += Math.sin(c.d);
-      c.tilt = Math.sin(c.tiltAngle - i / 3) * 15;
-
-      if (c.y > height) {
-        c.y = -10;
-        c.x = Math.random() * width;
-      }
-    });
-  }
-
-  function animateConfetti() {
-    drawConfetti();
-    requestAnimationFrame(animateConfetti);
-  }
-
-  animateConfetti();
-
-  window.addEventListener('resize', () => {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-  });
-</script>
+  <button class="button">I Love You!</button>
 
 </body>
 </html>
