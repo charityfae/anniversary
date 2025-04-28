@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Anniversary</title>
   <style>
-    /* Make the background love video */
+    /* Background love video */
     #background-video {
       position: fixed;
       top: 0;
@@ -20,27 +20,74 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
-      height: 100vh;
+      padding: 20px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      justify-content: flex-start;
+      overflow-x: hidden;
       color: white;
       text-align: center;
       background: #000; /* fallback background */
+      position: relative;
     }
 
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Marquee */
     .marquee {
       font-size: 2rem;
       font-weight: bold;
-      margin-bottom: 30px;
+      margin: 20px 0;
       padding: 10px 20px;
       background: rgba(255, 192, 203, 0.2);
       border-radius: 20px;
       backdrop-filter: blur(8px);
       animation: pulse 2s infinite;
+      width: 90%;
+      max-width: 500px;
+      z-index: 2;
     }
 
     @keyframes pulse {
@@ -49,12 +96,15 @@
       100% { transform: scale(1); }
     }
 
+    /* Image container */
     .container {
       display: flex;
-      gap: 30px;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       margin-top: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      width: 100%;
+      z-index: 2;
     }
 
     .item {
@@ -62,21 +112,22 @@
       border-radius: 20px;
       overflow: hidden;
       backdrop-filter: blur(10px);
-      width: 200px;
+      width: 90%;
+      max-width: 300px;
       height: 250px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       transition: transform 0.5s;
       animation: fadeInUp 1.5s ease;
     }
 
-    .item:hover {
-      transform: scale(1.05);
-    }
-
     .item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
     }
 
     @keyframes fadeInUp {
@@ -90,8 +141,9 @@
       }
     }
 
+    /* Button */
     .button {
-      margin-top: 40px;
+      margin: 30px 0;
       padding: 12px 30px;
       font-size: 18px;
       background: #ff4d6d;
@@ -101,11 +153,26 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       transition: background 0.3s, transform 0.3s;
+      z-index: 2;
     }
 
     .button:hover {
       background: #ff3366;
       transform: scale(1.05);
+    }
+
+    /* Responsive design */
+    @media (min-width: 600px) {
+      .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .item {
+        width: 45%;
+        height: 250px;
+      }
     }
   </style>
 </head>
@@ -117,6 +184,18 @@
     Your browser does not support the video tag.
   </video>
 
+  <!-- Floating hearts -->
+  <div class="heart" style="left:10%; animation-duration: 12s;"></div>
+  <div class="heart" style="left:20%; animation-duration: 10s;"></div>
+  <div class="heart" style="left:30%; animation-duration: 14s;"></div>
+  <div class="heart" style="left:40%; animation-duration: 9s;"></div>
+  <div class="heart" style="left:50%; animation-duration: 11s;"></div>
+  <div class="heart" style="left:60%; animation-duration: 13s;"></div>
+  <div class="heart" style="left:70%; animation-duration: 10s;"></div>
+  <div class="heart" style="left:80%; animation-duration: 12s;"></div>
+  <div class="heart" style="left:90%; animation-duration: 14s;"></div>
+
+  <!-- Main content -->
   <div class="marquee">Happy Anniversary Mum and Dad ❤️</div>
 
   <div class="container">
